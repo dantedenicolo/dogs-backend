@@ -57,35 +57,33 @@ const validate = async (req, res, next) => {
 			.status(400)
 			.json({ message: "Minimum height must be less than maximum height." });
 	}
-	if (heightMin > 129 || heightMin < 1 || !Number.isInteger(heightMin)) {
-		// Si la altura mínima es mayor a 129, menor a 1 o no es un número entero, retornamos un mensaje de error
+	if (heightMin > 129 || heightMin < 1) {
+		// Si la altura mínima es mayor a 129, menor a 1 retornamos un mensaje de error
+		console.log(heightMin);
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid minimum height." });
 	}
-	if (heightMax > 129 || heightMax < 1 || !Number.isInteger(heightMax)) {
-		// Si la altura máxima es mayor a 129, menor a 1 o no es un número entero, retornamos un mensaje de error
+	if (heightMax > 129 || heightMax < 1) {
+		// Si la altura máxima es mayor a 129, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid maximum height." });
 	}
-	if (weightMin > 199 || weightMin < 1 || !Number.isInteger(weightMin)) {
-		// Si el peso mínimo es mayor a 199, menor a 1 o no es un número entero, retornamos un mensaje de error
+	if (weightMin > 199 || weightMin < 1) {
+		// Si el peso mínimo es mayor a 199, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid minimum weight." });
 	}
-	if (weightMax > 199 || weightMax < 1 || !Number.isInteger(weightMax)) {
-		// Si el peso máximo es mayor a 199, menor a 1 o no es un número entero, retornamos un mensaje de error
+	if (weightMax > 199 || weightMax < 1) {
+		// Si el peso máximo es mayor a 199, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid maximum weight." });
 	}
-	if (
-		life_span &&
-		(life_span > 35 || life_span < 1 || !Number.isInteger(life_span))
-	) {
-		// Si la vida promedio es mayor a 35, menor a 1 o no es un número entero, retornamos un mensaje de error
+	if (life_span && (life_span > 35 || life_span < 1)) {
+		// Si la vida promedio es mayor a 35, menor a 1 retornamos un mensaje de error
 		return res.status(400).json({ message: "Please enter a valid life span." });
 	}
 	if (!temperament || temperament.length < 1) {
