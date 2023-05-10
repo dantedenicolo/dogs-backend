@@ -45,44 +45,44 @@ const validate = async (req, res, next) => {
 			.status(400)
 			.json({ message: "Name must have a maximum of 50 characters." });
 	}
-	if (weightMin > weightMax) {
+	if (Number(weightMin) > Number(weightMax)) {
 		// Si el peso mínimo es mayor al peso máximo, retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Minimum weight must be less than maximum weight." });
 	}
-	if (heightMin > heightMax) {
+	if (Number(heightMin) > Number(heightMax)) {
 		// Si la altura mínima es mayor a la altura máxima, retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Minimum height must be less than maximum height." });
 	}
-	if (heightMin > 129 || heightMin < 1) {
+	if (Number(heightMin) > 129 || Number(heightMin) < 1) {
 		// Si la altura mínima es mayor a 129, menor a 1 retornamos un mensaje de error
 		console.log(heightMin);
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid minimum height." });
 	}
-	if (heightMax > 129 || heightMax < 1) {
+	if (Number(heightMax) > 129 || Number(heightMax) < 1) {
 		// Si la altura máxima es mayor a 129, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid maximum height." });
 	}
-	if (weightMin > 199 || weightMin < 1) {
+	if (Number(weightMin) > 199 || Number(weightMin) < 1) {
 		// Si el peso mínimo es mayor a 199, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid minimum weight." });
 	}
-	if (weightMax > 199 || weightMax < 1) {
+	if (Number(weightMax) > 199 || Number(weightMax) < 1) {
 		// Si el peso máximo es mayor a 199, menor a 1 retornamos un mensaje de error
 		return res
 			.status(400)
 			.json({ message: "Please enter a valid maximum weight." });
 	}
-	if (life_span && (life_span > 35 || life_span < 1)) {
+	if (life_span && (Number(life_span) > 35 || Number(life_span) < 1)) {
 		// Si la vida promedio es mayor a 35, menor a 1 retornamos un mensaje de error
 		return res.status(400).json({ message: "Please enter a valid life span." });
 	}
