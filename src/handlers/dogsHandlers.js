@@ -1,5 +1,7 @@
 const formatDogs = require("../controllers/formatDogs");
 const createDog = require("../controllers/createDog");
+const updateDog = require("../controllers/updateDog");
+const deleteDog = require("../controllers/deleteDog");
 
 const getDogs = async (req, res) => {
 	const { name } = req.query; // Desestructuramos el query enviado en la URL
@@ -81,8 +83,65 @@ const postDog = async (req, res) => {
 	}
 };
 
+const putDog = async (req, res) => {
+	const { id } = req.params; // Desestructuramos el id enviado en los params
+	// Desestructuramos los datos enviados en el body
+	const {
+		name,
+		image,
+		heightMin,
+		heightMax,
+		weightMin,
+		weightMax,
+		life_span,
+		temperament,
+	} = req.body;
+	try {
+		const update = await updateDog({
+			// Actualizamos el perro
+			id,
+			name,
+			image,
+			heightMin,
+			heightMax,
+			weightMin,
+			weightMax,
+			life_span,
+			temperament,
+		});
+		if (update.message) {
+			// Si hay un error, retornamos un mensaje de error
+			return res.status(400).json({ message: update.message });
+		} else {
+			// Si se actualiza el perro, lo retornamos
+			return res.status(200).json(update);
+		}
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({ message: "Internal server error." });
+	}
+};
+
+const deleteDogById = async (req, res) => {
+	const { id } = req.params; // Desestructuramos el id enviado en los params
+	try {
+		const dog = await deleteDog(id); // Eliminamos el perro
+		if (dog) {
+			// Si se elimina el perro, lo retornamos
+			return res.status(200).json(dog);
+		} else {
+			// Si no se encuentra el perro, retornamos un mensaje de error
+			return res.status(404).json({ message: "Dog not found." });
+		}
+	} catch (error) {
+		return res.status(500).json({ message: "Internal server error." });
+	}
+};
+
 module.exports = {
 	getDogs,
 	getDogById,
 	postDog,
+	putDog,
+	deleteDogById,
 };
