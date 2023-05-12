@@ -6,14 +6,14 @@ const loadDatabase = async () => {
 		const checkTemperaments = await Temperament.findAll(); // Buscamos si ya existen temperamentos en la base de datos
 		// Si no existen temperamentos, los creamos
 		if (!checkTemperaments.length) {
-			// Obtenemos los temperamentos de la API
+			// Obtenemos los perros de la api
 			const fetchApi = await axios.get("https://api.thedogapi.com/v1/breeds");
 			// Mapeamos los temperamentos
 			const temperaments = fetchApi.data.map((dog) => {
 				return { name: dog.temperament };
 			});
 
-			// Separamos los temperamentos que vienen en un string
+			// Separamos los nombres de los temperamentos en un array
 			const temperamentsArray = temperaments.map((temp) =>
 				temp.name?.split(", ")
 			);

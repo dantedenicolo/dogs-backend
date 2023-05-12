@@ -11,6 +11,7 @@ const updateDog = async ({
 	life_span,
 	temperament,
 }) => {
+	// Actualizamos el perro con los datos enviados en el body
 	const updateDog = await Dog.update(
 		{
 			name,
