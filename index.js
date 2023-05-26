@@ -17,15 +17,15 @@
 //     =====`-.____`.___ \_____/___.-`___.-'=====
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-const server = require("./src/app.js");
-const { conn } = require("./src/db.js");
-const loadDatabase = require("./src/helpers/loadDatabase");
-const PORT = process.env.PORT;
+const server = require('./src/app.js')
+const { conn } = require('./src/db.js')
+const loadDatabase = require('./src/helpers/loadDatabase')
+const PORT = process.env.PORT
 
 // Syncing all the models at once.
 conn.sync({ alter: true }).then(() => {
-	server.listen(PORT, async () => {
-		await loadDatabase();
-		console.log(`listening at ${PORT}`); // eslint-disable-line no-console
-	});
-});
+  server.listen(PORT, async () => {
+    await loadDatabase()
+    console.log(`listening at ${PORT}`) // eslint-disable-line no-console
+  })
+})
